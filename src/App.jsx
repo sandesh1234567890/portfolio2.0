@@ -638,29 +638,29 @@ const App = () => {
         ref={worksRef}
         className="w-full h-auto flex flex-col justify-start bg-[#020202] pt-24 md:pt-40 pb-12 overflow-hidden"
       >
-        <div className="mb-20 md:mb-32 text-center px-6">
+        <div className="mb-12 md:mb-32 text-center px-6">
            <h2 className="text-[10px] uppercase tracking-[0.6em] text-gray-400 font-black mb-4">Portfolio</h2>
-           <h3 className="text-4xl sm:text-5xl md:text-8xl font-black italic tracking-tighter text-white">SELECTED WORKS</h3>
+           <h3 className="text-3xl sm:text-5xl md:text-8xl font-black italic tracking-tighter text-white uppercase">Selected Works</h3>
         </div>
 
         <div className="relative group/carousel">
           {/* Navigation Buttons */}
           <button 
-            onClick={() => carouselRef.current.scrollBy({ left: -window.innerWidth * 0.5, behavior: 'smooth' })}
-            className="absolute left-8 top-1/2 -translate-y-1/2 z-40 w-16 h-16 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all hover:bg-white hover:text-black hover:scale-110 cursor-pointer hidden md:flex"
+            onClick={() => carouselRef.current.scrollBy({ left: -window.innerWidth * 0.7, behavior: 'smooth' })}
+            className="absolute left-2 md:left-8 top-[35%] md:top-1/2 -translate-y-1/2 z-40 w-16 h-16 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 text-white items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all hover:bg-white hover:text-black hover:scale-110 cursor-pointer hidden md:flex"
           >
             <ChevronLeft size={32} />
           </button>
           <button 
-            onClick={() => carouselRef.current.scrollBy({ left: window.innerWidth * 0.5, behavior: 'smooth' })}
-            className="absolute right-8 top-1/2 -translate-y-1/2 z-40 w-16 h-16 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all hover:bg-white hover:text-black hover:scale-110 cursor-pointer hidden md:flex"
+            onClick={() => carouselRef.current.scrollBy({ left: window.innerWidth * 0.7, behavior: 'smooth' })}
+            className="absolute right-2 md:right-8 top-[35%] md:top-1/2 -translate-y-1/2 z-40 w-16 h-16 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 text-white items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all hover:bg-white hover:text-black hover:scale-110 cursor-pointer hidden md:flex"
           >
             <ChevronRight size={32} />
           </button>
 
           <div 
             ref={carouselRef}
-            className="flex overflow-x-auto gap-8 md:gap-16 px-[7.5vw] md:px-[calc(50vw-400px)] py-6 hide-scrollbar cursor-grab active:cursor-grabbing snap-x snap-mandatory"
+            className="flex flex-col md:flex-row md:overflow-x-auto gap-12 md:gap-16 px-6 md:px-[calc(50vw-400px)] py-6 hide-scrollbar cursor-grab active:cursor-grabbing md:snap-x md:snap-mandatory md:scroll-px-[20vw] md:md:scroll-px-[calc(50vw-400px)]"
           >
             {[
               { 
@@ -696,7 +696,7 @@ const App = () => {
                 img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200" 
               },
             ].map((work, i) => (
-              <div key={i} className="min-w-[85vw] md:min-w-[800px] flex-shrink-0 group cursor-pointer bg-[#0c0c0e] rounded-[3.5rem] border border-white/5 overflow-hidden flex flex-col h-[550px] md:h-[70vh] shadow-2xl relative transition-all duration-700 snap-center snap-always">
+              <div key={i} className="w-full md:min-w-[800px] flex-shrink-0 group cursor-pointer bg-[#0c0c0e] rounded-[2rem] md:rounded-[3.5rem] border border-white/5 overflow-hidden flex flex-col h-[500px] md:h-[70vh] shadow-2xl relative transition-all duration-700 md:snap-center md:snap-always">
                 
                 {/* Lock Indicator */}
                 <div className="absolute top-8 left-8 z-30 opacity-0 group-data-[active=true]:opacity-100 transition-opacity duration-500">
@@ -706,8 +706,8 @@ const App = () => {
                   </div>
                 </div>
 
-                {/* Top Image Section - Now significantly larger */}
-                <div className="h-[350px] md:h-[58vh] w-full relative overflow-hidden bg-[#151518]">
+                {/* Top Image Section */}
+                <div className="h-[280px] md:h-[58vh] w-full relative overflow-hidden bg-[#151518]">
                   <div 
                     className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-1000 opacity-100 brightness-[1.1] contrast-[1.1] saturate-[1.2] group-hover:brightness-[1.3]"
                     style={{ backgroundImage: `url(${work.img})` }}
@@ -721,7 +721,7 @@ const App = () => {
                   </div>
                 </div>
 
-                {/* Bottom Info Section - Compact to allow for big image */}
+                {/* Bottom Info Section */}
                 <div className="p-8 md:p-10 pt-6 flex flex-col flex-grow justify-between bg-gradient-to-b from-[#0c0c0e] to-[#08080a]">
                   <div>
                     <div className="flex items-center gap-4 mb-2">
@@ -758,6 +758,16 @@ const App = () => {
                   <p className="text-[11px] font-black uppercase tracking-[0.4em] text-gray-500 group-hover:text-white transition-colors">Browse Archive</p>
                </div>
             </div>
+          </div>
+
+          {/* Pagination Dots for Mobile */}
+          <div className="flex md:hidden justify-center gap-2 mt-8">
+            {[0, 1, 2, 3].map((dot) => (
+              <div 
+                key={dot} 
+                className="w-1.5 h-1.5 rounded-full bg-white/20"
+              ></div>
+            ))}
           </div>
         </div>
       </section>

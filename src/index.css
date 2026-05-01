@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #050505;
+    color: white;
+  }
+}
+
+@keyframes drift {
+  from { transform: translateX(-10%) translateY(0); }
+  to { transform: translateX(10%) translateY(-2%); }
+}
+
+.animate-drift {
+  animation: drift 20s ease-in-out infinite alternate;
+}
+
+.animate-drift-slow {
+  animation: drift 35s ease-in-out infinite alternate-reverse;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
